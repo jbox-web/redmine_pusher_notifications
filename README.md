@@ -48,6 +48,8 @@ Go to the plugin settings page within Redmine interface to configure your Pusher
 
 If you want to integrate Pusher async notifications in your plugin, or just Gitter with ```gflash``` you may need to register your own channels and events in your ```init.rb``` file : each channel can have many events. It may also have an optional ```target``` parameter which can be a string or a Proc.
 
+    ## it must be OUTSIDE of the Redmine::Plugin.register block
+    
     ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
       target Proc.new { User.current.login }
       event  :event1, :sticky => true
