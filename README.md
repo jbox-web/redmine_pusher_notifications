@@ -2,7 +2,7 @@
 
 This plugin is designed to integrate the [Pusher Notification System](http://pusher.com) in Redmine to display nice notifications in Growl style.
 
-Its aims is to serve as a central point to store Pusher configuration.
+It aims to serve as a central point to store Pusher configuration.
 
 It relies on the  [acts_as_notifiable_redmine](https://github.com/jbox-web/acts_as_notifiable_redmine) gem so plugins developpers can access to the DSL provided to register their own channels and events (see the doc below).
 
