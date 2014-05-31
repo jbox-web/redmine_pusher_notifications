@@ -1,6 +1,4 @@
 # encoding: utf-8
-require 'pusher'
-
 require 'redmine'
 
 require 'redmine_pusher_notifications'
