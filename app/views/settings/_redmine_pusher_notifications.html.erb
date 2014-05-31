@@ -79,7 +79,7 @@
 
         <dt><%= l(:label_pusher_channel_bound_events) %></dt>
         <dd>
-          <table class="table table-hover" style="width: 40%;">
+          <table class="table table-hover" style="width: 60%;">
             <th><%= l(:label_pusher_event_name) %></th>
             <th><%= l(:label_sticky) %></th>
             <th></th>
@@ -88,7 +88,15 @@
               <tr>
                 <td><%= event.name %></td>
                 <td><%= checked_image2 event.sticky? %></td>
-                <td><%= link_to l(:label_test), pusher_event_test_path(:channel => channel.name, :event => event.name), :remote => true %></td>
+                <td>
+                  <ul class="unstyled">
+                    <li><%= link_to l(:label_test_with_pusher), pusher_event_test_path(:channel => channel.name, :event => event.name, :pusher => true), :remote => true %></li>
+                    <li>
+                      <%= link_to l(:label_test_without_pusher), pusher_event_test_path(:channel => channel.name, :event => event.name, :pusher => false), :remote => true %>
+                      <em><%= l(:label_test_without_pusher_desc) %></em>
+                    </li>
+                  </ul>
+                </td>
               </tr>
             <% end %>
           </table>

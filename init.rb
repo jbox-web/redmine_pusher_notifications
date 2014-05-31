@@ -5,6 +5,8 @@ require 'redmine'
 
 require 'redmine_pusher_notifications'
 
+Gritter.rails_flash_fallback = true
+
 Redmine::Plugin.register :redmine_pusher_notifications do
   name 'Redmine Pusher Notifications'
   author 'Nicolas Rodriguez'

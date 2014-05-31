@@ -9,6 +9,7 @@ apply_patch do
   require_dependency 'user'
 
   # Patches
+  require_dependency 'redmine_pusher_notifications/patches/gritter_patch'
   require_dependency 'redmine_pusher_notifications/patches/setting_patch'
   require_dependency 'redmine_pusher_notifications/patches/user_patch'
 

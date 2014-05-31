@@ -1,13 +1,10 @@
 <% if User.current.logged? %>
 
   <%= javascript_tag do %>
-
     $(document).ready(function() {
-      $.extend($.gritter.options, {
-        fade_in_speed: 'fast',
-        fade_out_speed: 'fast',
-        time: <%= Setting.plugin_redmine_pusher_notifications[:popup_default_delay] %>,
-      });
+      <%= extend_gritter :time => Setting.plugin_redmine_pusher_notifications[:popup_default_delay] %>
+      <%= extend_gritter :fade_in_speed => 'fast' %>
+      <%= extend_gritter :fade_out_speed => 'fast' %>
 
       $(function() {
         var pusher = new Pusher('<%= ActsAsNotifiableRedmine::Notifications.courier.key %>');

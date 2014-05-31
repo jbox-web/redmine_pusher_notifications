@@ -16,4 +16,14 @@ en:
   label_pusher_event_name: Event name
   label_sticky: Sticky
   label_pusher_channel_bound_events: Bound events
-  label_test: Test me!
+  label_test_with_pusher: Test me with Pusher!
+  label_test_without_pusher: Test me without Pusher!
+  label_test_without_pusher_desc: (Notification will be sent like a flash message)
+
+  gflash:
+    titles:
+      error: Error
+      notice: Notice
+      success: Success
+      warning: Warning
+      progress: Progress
