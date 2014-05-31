@@ -21,7 +21,7 @@ You can take a look to the [```pusher```](https://github.com/jbox-web/redmine_pu
 
 * Ruby 1.9.x or 2.0.x
 * a working [Redmine](http://www.redmine.org/) installation
-* an account on [Pusher](http://pusher.com)
+* a free account on [Pusher](http://pusher.com)
 * [acts_as_notifiable_redmine](https://github.com/jbox-web/acts_as_notifiable_redmine) gem
 * [gritter](https://github.com/RobinBrouwer/gritter) gem
 
