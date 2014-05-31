@@ -40,6 +40,16 @@
 
         <p>This plugin is designed to integrate the <a href="http://pusher.com">Pusher Notification System</a> in Redmine to display nice notifications in Growl style.</p>
 
+<p>Its aims is to serve as a central point to store Pusher configuration.</p>
+
+<p>It relies on the  <a href="https://github.com/jbox-web/acts_as_notifiable_redmine">acts_as_notifiable_redmine</a> gem so plugins developpers can access to the DSL provided to register their own channels and events (see the doc below).</p>
+
+<p>The <a href="https://github.com/jbox-web/acts_as_notifiable_redmine">acts_as_notifiable_redmine</a> also provides a method to send <strong>asynchronous</strong> notifications via Pusher.</p>
+
+<p>It also relies on <a href="https://github.com/RobinBrouwer/gritter">gritter</a> gem to display notifications so plugins developpers also have access to its functionalities in their controllers like <a href="https://github.com/RobinBrouwer/gritter#gflash"><code>gflash</code></a> <strong>synchronous</strong> notifications ;).</p>
+
+<p>You can take a look to the <a href="https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/app/controllers/pusher_controller.rb"><code>pusher</code></a> controller which implements the both methods.</p>
+
 <h2>
 <a name="code-status" class="anchor" href="#code-status"><span class="octicon octicon-link"></span></a>Code status</h2>
 
@@ -52,12 +62,12 @@
 <ul>
 <li>Ruby 1.9.x or 2.0.x</li>
 <li>a working <a href="http://www.redmine.org/">Redmine</a> installation</li>
-<li>an account on <a href="http://pusher.com">Pusher</a>
+<li>a free account on <a href="http://pusher.com">Pusher</a>
 </li>
 <li>
-<a href="https://github.com/RobinBrouwer/gritter">gritter</a> gem</li>
-<li>
 <a href="https://github.com/jbox-web/acts_as_notifiable_redmine">acts_as_notifiable_redmine</a> gem</li>
+<li>
+<a href="https://github.com/RobinBrouwer/gritter">gritter</a> gem</li>
 </ul><h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
@@ -79,6 +89,84 @@ redmine$ bundle install
 <a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
 <p>Go to the plugin settings page within Redmine interface to configure your Pusher account informations. That's all!</p>
+
+<h2>
+<a name="plugin-developpers" class="anchor" href="#plugin-developpers"><span class="octicon octicon-link"></span></a>Plugin developpers</h2>
+
+<p>If you want to integrate Pusher async notifications in your plugin, or just Gitter with <code>gflash</code> you may need to register your own channels and events in your <code>init.rb</code> file : each channel can have many events. It may also have an optional <code>target</code> parameter which can be a string or a Proc.</p>
+
+<pre><code>ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
+  target Proc.new { User.current.login }
+  event  :event1, :sticky =&gt; true
+  event  :event2, :sticky =&gt; false
+  event  :event3
+end
+
+ActsAsNotifiableRedmine::Notifications.register_channel :broadcast do
+  target 'broadcast'
+  event  :event1, :sticky =&gt; true
+  event  :event2, :sticky =&gt; false
+  event  :event3
+end
+</code></pre>
+
+<p>Then to send notifications you have 2 options :</p>
+
+<ul>
+<li>
+<strong>asynchronous</strong> notifications via Pusher</li>
+<li>
+<strong>synchronous</strong> notifications sent by the controller</li>
+</ul><p>For <strong>asynchronous</strong> notifications :</p>
+
+<pre><code>ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title =&gt; 'Hello!', :message =&gt; 'This is a test message !'})
+</code></pre>
+
+<p><strong>Note :</strong> The logic to determine wether or not to send a notification is let to the developer. You can easily do this with callbacks :</p>
+
+<pre><code>class Comment &lt; ActiveRecord::Base
+    has_many :watchers
+    after_create :send_notification
+
+    private
+
+        def send_notification
+            channels = []
+            watchers.each do |watcher|
+                token = '&lt;channel_name&gt;-' + watcher.login
+                channels.push(token)
+            end
+            ActsAsNotifiableRedmine::Notifications.send_notification(channels, &lt;event_name&gt;, {:title =&gt; 'Hello!', :message =&gt; 'This is a test message !'})
+        end
+end
+</code></pre>
+
+<p>For <strong>synchronous</strong> notifications :</p>
+
+<p>In a controller :</p>
+
+<pre><code>def test
+  data = {}
+  data[:message] = 'Hello!'
+  data[:sticky] = true
+  data[:image] = "&lt;img class=\"gritter-image\" src=\"/plugin_assets/redmine_pusher_notifications/images/ok.png\"&gt;"
+  gflash :now, :success =&gt; { :value =&gt; data[:message], :sticky =&gt; data[:sticky], :image =&gt; data[:image] }
+end
+</code></pre>
+
+<p>In a JS partial :</p>
+
+<pre><code>$(document).ready(function() {
+  &lt;%= gflash :js =&gt; true %&gt;
+});
+</code></pre>
+
+<p>In a HTML partial :</p>
+
+<pre><code>&lt;%= link_to 'Test me!', test_path, :remote =&gt; true %&gt;
+</code></pre>
+
+<p>For more details, take a look at <a href="https://github.com/RobinBrouwer/gritter#gflash">gritter</a>.</p>
 
 <h2>
 <a name="copyrights--license" class="anchor" href="#copyrights--license"><span class="octicon octicon-link"></span></a>Copyrights &amp; License</h2>
