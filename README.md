@@ -2,7 +2,12 @@
 
 This plugin is designed to integrate the [Pusher Notification System](http://pusher.com) in Redmine to display nice notifications in Growl style.
 
+## Code status
+
+* [![Code Climate](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications.png)](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications)
+
 ## Requirements
+
 * Ruby 1.9.x or 2.0.x
 * a working [Redmine](http://www.redmine.org/) installation
 * an account on [Pusher](http://pusher.com)
