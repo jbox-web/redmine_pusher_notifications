@@ -6,9 +6,9 @@ Its aims is to serve as a central point to store Pusher configuration.
 
 It relies on the  [acts_as_notifiable_redmine](https://github.com/jbox-web/acts_as_notifiable_redmine) gem so plugins developpers can access to the DSL provided to register their own channels and events (see the doc below).
 
-The [acts_as_notifiable_redmine](https://github.com/jbox-web/acts_as_notifiable_redmine) also provides a method to send (async) notifications via Pusher.
+The [acts_as_notifiable_redmine](https://github.com/jbox-web/acts_as_notifiable_redmine) also provides a method to send **asynchronous** notifications via Pusher.
 
-It also relies on [gritter](https://github.com/RobinBrouwer/gritter) gem to display notifications so plugins developpers have also access to its functionalities in their controllers like [```gflash```](https://github.com/RobinBrouwer/gritter#gflash) ;)
+It also relies on [gritter](https://github.com/RobinBrouwer/gritter) gem to display notifications so plugins developpers have also access to its functionalities in their controllers like [```gflash```](https://github.com/RobinBrouwer/gritter#gflash) **synchronous** notifications ;).
 
 You can take a look to the [```pusher```](https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/app/controllers/pusher_controller.rb) controller which implements the both methods.
 
@@ -61,10 +61,10 @@ If you want to integrate Pusher notifications, or just Gitter with ```gflash``` 
     end
 
 Then to send notifications you have 2 options :
-* asynchronous notifications via Pusher
-* synchronous notifications sent by the controller
+* **asynchronous** notifications via Pusher
+* **synchronous** notifications sent by the controller
 
-For asynchronous notifications :
+For **asynchronous** notifications :
 
     ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title => 'Hello!', :message => 'This is a test message !'})
 
@@ -86,7 +86,7 @@ For asynchronous notifications :
             end
     end
 
-For synchronous notifications :
+For **synchronous** notifications :
 
 In a controller :
 
