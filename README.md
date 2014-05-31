@@ -4,6 +4,26 @@ This plugin is designed to integrate the [Pusher Notification System](http://pus
 
 It uses [acts_as_notifiable_redmine](https://github.com/jbox-web/acts_as_notifiable_redmine).
 
+## Requirements
+* Ruby 1.9.x or 2.0.x
+* a working [Redmine](http://www.redmine.org/) installation
+* an account on [Pusher](http://pusher.com)
+
+## Installation
+  
+    ## Before install the plugin, stop Redmine!
+    
+    root$ su - redmine
+    redmine$ cd REDMINE_ROOT/plugins
+    redmine$ git clone https://github.com/jbox-web/redmine_bootstrap_kit.git
+    redmine$ git clone https://github.com/jbox-web/redmine_pusher_notifications.git
+    redmine$ cd redmine_pusher_notifications/
+    redmine$ git checkout v1.0.0
+    redmine$ cd REDMINE_ROOT
+    redmine$ bundle install
+
+    ## After install the plugin, start Redmine!
+    
 ## Copyrights & License
 Redmine Pusher Notifications is completely free and open source and released under the [MIT License](https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/LICENSE).
 
