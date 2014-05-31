@@ -1,0 +1,19 @@
+en:
+
+  ## Fields
+  field_pusher_app_id: Pusher App ID
+  field_pusher_key: Pusher Key
+  field_pusher_secret: Pusher Secret
+  field_pusher_encrypted: Enable SSL?
+  field_popup_default_delay: Popup default delay
+
+  ## Labels
+  label_global_parameters: Global parameters
+  label_channels_parameters: Channels parameters
+  label_pusher_channel_name: Channel name
+  label_pusher_channel_token: Channel token
+  label_pusher_channel_token_desc: (Notifications will be send to this channel)
+  label_pusher_event_name: Event name
+  label_sticky: Sticky
+  label_pusher_channel_bound_events: Bound events
+  label_test: Test me!
