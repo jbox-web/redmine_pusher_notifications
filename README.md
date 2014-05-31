@@ -42,6 +42,74 @@ You can take a look to the [```pusher```](https://github.com/jbox-web/redmine_pu
 
 Go to the plugin settings page within Redmine interface to configure your Pusher account informations. That's all!
 
+## Plugin developpers
+
+If you want to integrate Pusher notifications, or just Gitter with ```gflash``` you may need to register your own channels and events in your ```init.rb``` file : each channel can have many events. It may also have an optional ```target``` parameter which can be a string or a Proc.
+
+    ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
+      target Proc.new { User.current.login }
+      event  :event1, :sticky => true
+      event  :event2, :sticky => false
+      event  :event3
+    end
+    
+    ActsAsNotifiableRedmine::Notifications.register_channel :broadcast do
+      target 'broadcast'
+      event  :event1, :sticky => true
+      event  :event2, :sticky => false
+      event  :event3
+    end
+
+Then to send notifications you have 2 options :
+* asynchronous notifications via Pusher
+* synchronous notifications sent by the controller
+
+For asynchronous notifications :
+
+    ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title => 'Hello!', :message => 'This is a test message !'})
+
+**Note :** The logic to determine wether or not to send a notification is let to the developer. You can easily do this with callbacks :
+
+    class Comment < ActiveRecord::Base
+        has_many :watchers
+        after_create :send_notification
+        
+        private
+        
+            def send_notification
+                channels = []
+                watchers.each do |watcher|
+                    token = '<channel_name>-' + watcher.login
+                    channels.push(token)
+                end
+                ActsAsNotifiableRedmine::Notifications.send_notification(channels, <event_name>, {:title => 'Hello!', :message => 'This is a test message !'})
+            end
+    end
+
+For synchronous notifications :
+
+In a controller :
+
+    def test
+      data = {}
+      data[:message] = 'Hello!'
+      data[:sticky] = true
+      data[:image] = "<img class=\"gritter-image\" src=\"/plugin_assets/redmine_pusher_notifications/images/ok.png\">"
+      gflash :now, :success => { :value => data[:message], :sticky => data[:sticky], :image => data[:image] }
+    end
+
+In a JS partial :
+
+    $(document).ready(function() {
+      <%= gflash :js => true %>
+    });
+
+In a HTML partial :
+
+    <%= link_to 'Test me!', test_path, :remote => true %>
+
+For more details, take a look at [gritter](https://github.com/RobinBrouwer/gritter#gflash).
+
 ## Copyrights & License
 Redmine Pusher Notifications is completely free and open source and released under the [MIT License](https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/LICENSE).
 
