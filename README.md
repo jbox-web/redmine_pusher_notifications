@@ -5,6 +5,7 @@ This plugin is designed to integrate the [Pusher Notification System](http://pus
 ## Code status
 
 * [![Code Climate](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications.png)](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications)
+* [![Dependency Status](https://gemnasium.com/jbox-web/redmine_pusher_notifications.svg)](https://gemnasium.com/jbox-web/redmine_pusher_notifications)
 
 ## Requirements
 
