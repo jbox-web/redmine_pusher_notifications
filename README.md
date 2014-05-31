@@ -8,7 +8,7 @@ It relies on the  [acts_as_notifiable_redmine](https://github.com/jbox-web/acts_
 
 The [acts_as_notifiable_redmine](https://github.com/jbox-web/acts_as_notifiable_redmine) also provides a method to send **asynchronous** notifications via Pusher.
 
-It also relies on [gritter](https://github.com/RobinBrouwer/gritter) gem to display notifications so plugins developpers have also access to its functionalities in their controllers like [```gflash```](https://github.com/RobinBrouwer/gritter#gflash) **synchronous** notifications ;).
+It also relies on [gritter](https://github.com/RobinBrouwer/gritter) gem to display notifications so plugins developpers also have access to its functionalities in their controllers like [```gflash```](https://github.com/RobinBrouwer/gritter#gflash) **synchronous** notifications ;).
 
 You can take a look to the [```pusher```](https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/app/controllers/pusher_controller.rb) controller which implements the both methods.
 
