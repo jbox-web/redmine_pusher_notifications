@@ -23,7 +23,11 @@ It uses [acts_as_notifiable_redmine](https://github.com/jbox-web/acts_as_notifia
     redmine$ bundle install
 
     ## After install the plugin, start Redmine!
-    
+
+## Configuration
+
+Go to the plugin settings page within Redmine interface to configure your Pusher account informations. That's all!
+
 ## Copyrights & License
 Redmine Pusher Notifications is completely free and open source and released under the [MIT License](https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/LICENSE).
 
