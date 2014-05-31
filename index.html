@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Redmine Pusher Notifications by jbox-web</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/jbox-web/redmine_pusher_notifications">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/jbox-web/redmine_pusher_notifications/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/jbox-web/redmine_pusher_notifications/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Redmine Pusher Notifications</h1>
+          <p>A Redmine plugin which makes notifying your Redmine instance easy ;)</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/jbox-web">jbox-web</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <p>This plugin is designed to integrate the <a href="http://pusher.com">Pusher Notification System</a> in Redmine to display nice notifications in Growl style.</p>
+
+<h2>
+<a name="code-status" class="anchor" href="#code-status"><span class="octicon octicon-link"></span></a>Code status</h2>
+
+<ul>
+<li><a href="https://codeclimate.com/github/jbox-web/redmine_pusher_notifications"><img src="https://codeclimate.com/github/jbox-web/redmine_pusher_notifications.png" alt="Code Climate"></a></li>
+<li><a href="https://gemnasium.com/jbox-web/redmine_pusher_notifications"><img src="https://gemnasium.com/jbox-web/redmine_pusher_notifications.svg" alt="Dependency Status"></a></li>
+</ul><h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>Ruby 1.9.x or 2.0.x</li>
+<li>a working <a href="http://www.redmine.org/">Redmine</a> installation</li>
+<li>an account on <a href="http://pusher.com">Pusher</a>
+</li>
+<li>
+<a href="https://github.com/RobinBrouwer/gritter">gritter</a> gem</li>
+<li>
+<a href="https://github.com/jbox-web/acts_as_notifiable_redmine">acts_as_notifiable_redmine</a> gem</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>## Before install the plugin, stop Redmine!
+
+root$ su - redmine
+redmine$ cd REDMINE_ROOT/plugins
+redmine$ git clone https://github.com/jbox-web/redmine_bootstrap_kit.git
+redmine$ git clone https://github.com/jbox-web/redmine_pusher_notifications.git
+redmine$ cd redmine_pusher_notifications/
+redmine$ git checkout v1.0.0
+redmine$ cd REDMINE_ROOT
+redmine$ bundle install
+
+## After install the plugin, start Redmine!
+</code></pre>
+
+<h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>Go to the plugin settings page within Redmine interface to configure your Pusher account informations. That's all!</p>
+
+<h2>
+<a name="copyrights--license" class="anchor" href="#copyrights--license"><span class="octicon octicon-link"></span></a>Copyrights &amp; License</h2>
+
+<p>Redmine Pusher Notifications is completely free and open source and released under the <a href="https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/LICENSE">MIT License</a>.</p>
+
+<p>Copyright (c) 2013-2014 Nicolas Rodriguez (<a href="mailto:nrodriguez@jbox-web.com">nrodriguez@jbox-web.com</a>), JBox Web (<a href="http://www.jbox-web.com">http://www.jbox-web.com</a>) <a href="https://coderwall.com/n-rodriguez"><img src="https://api.coderwall.com/n-rodriguez/endorsecount.png" alt="endorse"></a></p>
+
+<h2>
+<a name="contribute" class="anchor" href="#contribute"><span class="octicon octicon-link"></span></a>Contribute</h2>
+
+<p>You can contribute to this plugin in many ways such as :</p>
+
+<ul>
+<li>Helping with documentation</li>
+<li>Contributing code (features or bugfixes)</li>
+<li>Reporting a bug</li>
+<li>Submitting translations</li>
+</ul><p>You can also donate :)</p>
+
+<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=FBT7E7DAVVEEU"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate"></a></p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-36504891-3");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
