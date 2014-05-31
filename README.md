@@ -6,8 +6,8 @@ This plugin is designed to integrate the [Pusher Notification System](http://pus
 * Ruby 1.9.x or 2.0.x
 * a working [Redmine](http://www.redmine.org/) installation
 * an account on [Pusher](http://pusher.com)
-* [gritter](https://github.com/RobinBrouwer/gritter)
-* [acts_as_notifiable_redmine](https://github.com/jbox-web/acts_as_notifiable_redmine)
+* [gritter](https://github.com/RobinBrouwer/gritter) gem
+* [acts_as_notifiable_redmine](https://github.com/jbox-web/acts_as_notifiable_redmine) gem
 
 ## Installation
   
