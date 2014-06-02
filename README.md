@@ -12,6 +12,8 @@ It also relies on [gritter](https://github.com/RobinBrouwer/gritter) gem to disp
 
 You can take a look to the [```pusher```](https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/app/controllers/pusher_controller.rb) controller which implements the both methods.
 
+![screenshot](https://raw.github.com/jbox-web/redmine_pusher_notifications/gh-pages/images/screenshot.png)
+
 ## Code status
 
 * [![Code Climate](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications.png)](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications)
