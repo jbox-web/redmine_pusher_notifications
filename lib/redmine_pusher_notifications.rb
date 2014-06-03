@@ -6,11 +6,13 @@ end
 apply_patch do
   # Redmine
   require_dependency 'setting'
+  require_dependency 'settings_controller'
   require_dependency 'user'
 
   # Patches
   require_dependency 'redmine_pusher_notifications/patches/gritter_patch'
   require_dependency 'redmine_pusher_notifications/patches/setting_patch'
+  require_dependency 'redmine_pusher_notifications/patches/settings_controller_patch'
   require_dependency 'redmine_pusher_notifications/patches/user_patch'
 
   # Hooks
