@@ -1,14 +1,5 @@
 # Set up autoload of patches
-def apply_patch(&block)
-  ActionDispatch::Callbacks.to_prepare(&block)
-end
-
-apply_patch do
-  # Redmine
-  require_dependency 'setting'
-  require_dependency 'settings_controller'
-  require_dependency 'user'
-
+Rails.configuration.to_prepare do
   # Patches
   require_dependency 'redmine_pusher_notifications/patches/gritter_patch'
   require_dependency 'redmine_pusher_notifications/patches/setting_patch'

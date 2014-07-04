@@ -1,3 +1,5 @@
+require_dependency 'settings_controller'
+
 module RedminePusherNotifications
   module Patches
     module SettingsControllerPatch

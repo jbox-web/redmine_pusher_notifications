@@ -1,3 +1,5 @@
+require_dependency 'user'
+
 module RedminePusherNotifications
   module Patches
     module UserPatch
