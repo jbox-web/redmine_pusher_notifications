@@ -19,6 +19,8 @@ en:
   label_test_with_pusher: Test me with Pusher!
   label_test_without_pusher: Test me without Pusher!
   label_test_without_pusher_desc: (Notification will be sent like a flash message)
+  label_enabled: Enabled
+  label_disabled: Disabled
 
   gflash:
     titles:
