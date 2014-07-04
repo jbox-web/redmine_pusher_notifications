@@ -1,3 +1,5 @@
+require_dependency 'setting'
+
 module RedminePusherNotifications
   module Patches
     module SettingPatch
