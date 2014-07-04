@@ -36,7 +36,7 @@ You can take a look to the [```pusher```](https://github.com/jbox-web/redmine_pu
     redmine$ git clone https://github.com/jbox-web/redmine_bootstrap_kit.git
     redmine$ git clone https://github.com/jbox-web/redmine_pusher_notifications.git
     redmine$ cd redmine_pusher_notifications/
-    redmine$ git checkout v1.0.0
+    redmine$ git checkout v1.0.2
     redmine$ cd REDMINE_ROOT
     redmine$ bundle install
 
