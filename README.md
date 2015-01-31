@@ -1,4 +1,4 @@
-### ![logo](https://raw.github.com/jbox-web/redmine_pusher_notifications/gh-pages/images/pusher_logo.png) A Redmine plugin which makes notifying your Redmine instance easy ;)
+## ![logo](https://raw.github.com/jbox-web/redmine_pusher_notifications/gh-pages/images/pusher_logo.png) A Redmine plugin which makes notifying your Redmine instance easy ;)
 
 [![Code Climate](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications.png)](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications)
 [![Dependency Status](https://gemnasium.com/jbox-web/redmine_pusher_notifications.svg)](https://gemnasium.com/jbox-web/redmine_pusher_notifications)
