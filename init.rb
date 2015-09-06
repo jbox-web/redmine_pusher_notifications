@@ -9,7 +9,7 @@ Redmine::Plugin.register :redmine_pusher_notifications do
   name 'Redmine Pusher Notifications'
   author 'Nicolas Rodriguez'
   description 'This is a plugin for Redmine to pub/sub notifications on Pusher Platform'
-  version '1.1.0-devel'
+  version '1.1.0'
   url 'http://www.jbox-web.com'
   author_url 'mailto:nrodriguez@jbox-web.com'
 
