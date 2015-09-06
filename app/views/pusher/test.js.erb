@@ -1,0 +1,9 @@
+$(document).ready(function() {
+  <%= gflash :js => true %>
+
+  var alert = Object();
+  alert.type    = '<%= @error ? "" : "alert-success" %>';
+  alert.message = "<%= escape_javascript(@message) %>";
+  alert.target  = '#pusher-test';
+  addAlertMessage(alert);
+});

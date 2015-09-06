@@ -1,0 +1,115 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'font_awesome',                   :plugin => 'redmine_bootstrap_kit' %>
+  <%= stylesheet_link_tag 'bootstrap/bootstrap_alert',      :plugin => 'redmine_bootstrap_kit' %>
+  <%= stylesheet_link_tag 'bootstrap/bootstrap_animations', :plugin => 'redmine_bootstrap_kit' %>
+  <%= stylesheet_link_tag 'bootstrap/bootstrap_close',      :plugin => 'redmine_bootstrap_kit' %>
+  <%= stylesheet_link_tag 'bootstrap/bootstrap_custom',     :plugin => 'redmine_bootstrap_kit' %>
+  <%= stylesheet_link_tag 'bootstrap/bootstrap_label' ,     :plugin => 'redmine_bootstrap_kit' %>
+  <%= stylesheet_link_tag 'bootstrap/bootstrap_tables',     :plugin => 'redmine_bootstrap_kit' %>
+  <%= stylesheet_link_tag 'bootstrap/bootstrap_tabs',       :plugin => 'redmine_bootstrap_kit' %>
+
+  <%= javascript_include_tag 'plugins/bootstrap_alert',       :plugin => 'redmine_bootstrap_kit' %>
+  <%= javascript_include_tag 'plugins/bootstrap_transitions', :plugin => 'redmine_bootstrap_kit' %>
+  <%= javascript_include_tag 'bootstrap',                     :plugin => 'redmine_bootstrap_kit' %>
+<% end %>
+
+<%
+  pusher_app_id       = (!Setting.plugin_redmine_pusher_notifications[:pusher_app_id].nil?)       ? Setting.plugin_redmine_pusher_notifications[:pusher_app_id] : ''
+  pusher_key          = (!Setting.plugin_redmine_pusher_notifications[:pusher_key].nil?)          ? Setting.plugin_redmine_pusher_notifications[:pusher_key] : ''
+  pusher_secret       = (!Setting.plugin_redmine_pusher_notifications[:pusher_secret].nil?)       ? Setting.plugin_redmine_pusher_notifications[:pusher_secret] : ''
+  pusher_encrypted    = (!Setting.plugin_redmine_pusher_notifications[:pusher_encrypted].nil?)    ? Setting.plugin_redmine_pusher_notifications[:pusher_encrypted] : true
+  popup_default_delay = (!Setting.plugin_redmine_pusher_notifications[:popup_default_delay].nil?) ? Setting.plugin_redmine_pusher_notifications[:popup_default_delay] : 6000
+
+  channels = ActsAsNotifiableRedmine::Notifications.channels
+  courier  = ActsAsNotifiableRedmine::Notifications.courier
+%>
+
+<h3><%= l(:label_global_parameters) %></h3>
+
+<p>
+  <%= content_tag(:label, l(:field_pusher_app_id)) %>
+  <%= text_field_tag("settings[pusher_app_id]", pusher_app_id, :size => '30') %>
+</p>
+
+<p>
+  <%= content_tag(:label, l(:field_pusher_key)) %>
+  <%= text_field_tag("settings[pusher_key]", pusher_key, :size => '30') %>
+</p>
+
+<p>
+  <%= content_tag(:label, l(:field_pusher_secret)) %>
+  <%= text_field_tag("settings[pusher_secret]", pusher_secret, :size => '30') %>
+</p>
+
+<p>
+  <%= content_tag(:label, l(:field_pusher_encrypted)) %>
+  <%= select_tag("settings[pusher_encrypted]", options_for_select([[l(:label_enabled), 'true'], [l(:label_disabled), 'false']], pusher_encrypted)) %>
+</p>
+
+<p>
+  <%= content_tag(:label, l(:field_popup_default_delay)) %>
+  <%= text_field_tag("settings[popup_default_delay]", popup_default_delay, :size => '10') %>
+</p>
+
+
+<h3><%= l(:label_channels_parameters) %></h3>
+
+<div id="pusher-test"></div>
+
+<div id="pusher-tabs">
+  <ul>
+    <% channels.each do |name, channel| %>
+      <li><%= link_to channel.name, "##{channel.name}" %></li>
+    <% end %>
+  </ul>
+
+  <% channels.each do |name, channel| %>
+    <div id="<%= channel.name %>">
+
+      <dl class="dl-horizontal">
+
+        <dt><%= l(:label_pusher_channel_name) %></dt>
+        <dd><span class="label label-info"><%= channel.name %></span></dd>
+
+        <dt><%= l(:label_pusher_channel_token) %></dt>
+        <dd>
+          <span class="label label-info"><%= channel.token %></span>
+          <em><%= l(:label_pusher_channel_token_desc) %></em>
+        </dd>
+
+        <dt><%= l(:label_pusher_channel_bound_events) %></dt>
+        <dd>
+          <table class="table table-hover" style="width: auto;">
+            <th><%= l(:label_pusher_event_name) %></th>
+            <th><%= l(:label_sticky) %></th>
+            <th></th>
+
+            <% channel.events.each do |event| %>
+              <tr>
+                <td><%= event.name %></td>
+                <td><%= checked_image2 event.sticky? %></td>
+                <td>
+                  <ul class="unstyled">
+                    <li><%= link_to l(:label_test_with_pusher), pusher_event_test_path(:channel => channel.name, :event => event.name, :pusher => true), :remote => true %></li>
+                    <li>
+                      <%= link_to l(:label_test_without_pusher), pusher_event_test_path(:channel => channel.name, :event => event.name, :pusher => false), :remote => true %>
+                      <em><%= l(:label_test_without_pusher_desc) %></em>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </dd>
+      </dl>
+
+    </div>
+  <% end %>
+</div>
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    $("#pusher-tabs").tabs();
+    $("#pusher-tabs ul").css('height', '3em');
+  });
+<% end %>

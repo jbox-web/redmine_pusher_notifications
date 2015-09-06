@@ -1,0 +1,39 @@
+<% if User.current.logged? %>
+
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      <%= extend_gritter :time => Setting.plugin_redmine_pusher_notifications[:popup_default_delay] %>
+      <%= extend_gritter :fade_in_speed => 'fast' %>
+      <%= extend_gritter :fade_out_speed => 'fast' %>
+
+      $(function() {
+        var pusher = new Pusher('<%= ActsAsNotifiableRedmine::Notifications.courier.key %>');
+
+        <% ActsAsNotifiableRedmine::Notifications.channels.each do |name, channel| %>
+          var <%= j channel.identifier %> = pusher.subscribe('<%= channel.token %>');
+
+          <%= channel.identifier %>.bind('subscription_error', function(status) {
+            $.gritter.add({
+              title: 'Pusher : <%= channel.identifier %>',
+              text: 'Subscription error'
+            });
+          });
+
+          <% channel.events.each do |event| %>
+            <%= channel.identifier %>.bind('<%= event.name %>', function(data) {
+              $.gritter.add({
+                title: data.title,
+                text: data.message,
+                image: data.image,
+                sticky: <%= event.sticky? %>,
+              });
+            });
+
+          <% end %>
+
+        <% end %>
+
+      });
+    });
+  <% end %>
+<% end %>
