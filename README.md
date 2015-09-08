@@ -29,18 +29,20 @@ You can take a look to the [```pusher```](https://github.com/jbox-web/redmine_pu
 
 ## Installation
 
-    ## Before install the plugin, stop Redmine!
+```sh
+## Before install the plugin, stop Redmine!
 
-    root$ su - redmine
-    redmine$ cd REDMINE_ROOT/plugins
-    redmine$ git clone https://github.com/jbox-web/redmine_bootstrap_kit.git
-    redmine$ git clone https://github.com/jbox-web/redmine_pusher_notifications.git
-    redmine$ cd redmine_pusher_notifications/
-    redmine$ git checkout v1.0.2
-    redmine$ cd REDMINE_ROOT
-    redmine$ bundle install
+root$ su - redmine
+redmine$ cd REDMINE_ROOT/plugins
+redmine$ git clone https://github.com/jbox-web/redmine_bootstrap_kit.git
+redmine$ git clone https://github.com/jbox-web/redmine_pusher_notifications.git
+redmine$ cd redmine_pusher_notifications/
+redmine$ git checkout v1.0.2
+redmine$ cd REDMINE_ROOT
+redmine$ bundle install
 
-    ## After install the plugin, start Redmine!
+## After install the plugin, start Redmine!
+```
 
 ## Configuration
 
