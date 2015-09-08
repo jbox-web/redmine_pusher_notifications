@@ -1,9 +1,11 @@
-## ![logo](https://raw.github.com/jbox-web/redmine_pusher_notifications/gh-pages/images/pusher_logo.png) A Redmine plugin which makes notifying your Redmine instance easy ;)
+## ![logo](https://raw.github.com/jbox-web/redmine_pusher_notifications/gh-pages/images/pusher_logo.png) Redmine Pusher Notifications
 
 [![GitHub license](https://img.shields.io/github/license/jbox-web/redmine_pusher_notifications.svg)](https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/jbox-web/redmine_pusher_notifications.svg)](https://github.com/jbox-web/redmine_pusher_notifications/releases/latest)
 [![Code Climate](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications.png)](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications)
 [![Dependency Status](https://gemnasium.com/jbox-web/redmine_pusher_notifications.svg)](https://gemnasium.com/jbox-web/redmine_pusher_notifications)
+
+### A Redmine plugin which makes notifying your Redmine instance, easy ;)
 
 This plugin is designed to integrate the [Pusher Notification System](http://pusher.com) in Redmine to display nice notifications in Growl style.
 
