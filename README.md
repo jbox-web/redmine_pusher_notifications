@@ -1,4 +1,4 @@
-## ![logo](https://raw.github.com/jbox-web/redmine_pusher_notifications/gh-pages/images/pusher_logo.png) Redmine Pusher Notifications
+## ![logo](https://raw.github.com/jbox-web/redmine_pusher_notifications/gh-pages/images/pusher_logo.png) Redmine Pusher Notifications Plugin
 
 [![GitHub license](https://img.shields.io/github/license/jbox-web/redmine_pusher_notifications.svg)](https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/jbox-web/redmine_pusher_notifications.svg)](https://github.com/jbox-web/redmine_pusher_notifications/releases/latest)
