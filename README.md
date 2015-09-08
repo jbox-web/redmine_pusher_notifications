@@ -1,9 +1,11 @@
 ## ![logo](https://raw.github.com/jbox-web/redmine_pusher_notifications/gh-pages/images/pusher_logo.png) A Redmine plugin which makes notifying your Redmine instance easy ;)
 
+[![GitHub license](https://img.shields.io/github/license/jbox-web/redmine_pusher_notifications.svg)](https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/jbox-web/redmine_pusher_notifications.svg)](https://github.com/jbox-web/redmine_pusher_notifications/releases/latest)
 [![Code Climate](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications.png)](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications)
 [![Dependency Status](https://gemnasium.com/jbox-web/redmine_pusher_notifications.svg)](https://gemnasium.com/jbox-web/redmine_pusher_notifications)
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FBT7E7DAVVEEU)
- 
+
 This plugin is designed to integrate the [Pusher Notification System](http://pusher.com) in Redmine to display nice notifications in Growl style.
 
 It aims to serve as a central point to store Pusher configuration.
@@ -27,9 +29,9 @@ You can take a look to the [```pusher```](https://github.com/jbox-web/redmine_pu
 * [gritter](https://github.com/RobinBrouwer/gritter) gem
 
 ## Installation
-  
+
     ## Before install the plugin, stop Redmine!
-    
+
     root$ su - redmine
     redmine$ cd REDMINE_ROOT/plugins
     redmine$ git clone https://github.com/jbox-web/redmine_bootstrap_kit.git
@@ -50,14 +52,14 @@ Go to the plugin settings page within Redmine interface to configure your Pusher
 If you want to integrate Pusher async notifications in your plugin, or just Gitter with ```gflash``` you may need to register your own channels and events in your ```init.rb``` file : each channel can have many events. It may also have an optional ```target``` parameter which can be a string or a Proc.
 
     ## it must be OUTSIDE of the Redmine::Plugin.register block
-    
+
     ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
       target Proc.new { User.current.login }
       event  :event1, :sticky => true
       event  :event2, :sticky => false
       event  :event3
     end
-    
+
     ActsAsNotifiableRedmine::Notifications.register_channel :broadcast do
       target 'broadcast'
       event  :event1, :sticky => true
@@ -78,9 +80,9 @@ For **asynchronous** notifications :
     class Comment < ActiveRecord::Base
         has_many :watchers
         after_create :send_notification
-        
+
         private
-        
+
             def send_notification
                 channels = []
                 watchers.each do |watcher|
@@ -115,13 +117,6 @@ In a HTML partial :
 
 For more details, take a look at [gritter](https://github.com/RobinBrouwer/gritter#gflash).
 
-## Copyrights & License
-
-Redmine Pusher Notifications is completely free and open source and released under the [MIT License](https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/LICENSE).
-
-Copyright (c) 2013-2015 Nicolas Rodriguez (nrodriguez@jbox-web.com), JBox Web (http://www.jbox-web.com) [![endorse](https://api.coderwall.com/n-rodriguez/endorsecount.png)](https://coderwall.com/n-rodriguez)
-
-
 ## Contribute
 
 You can contribute to this plugin in many ways such as :
@@ -131,5 +126,3 @@ You can contribute to this plugin in many ways such as :
 * Submitting translations
 
 You can also donate :)
-
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FBT7E7DAVVEEU)
