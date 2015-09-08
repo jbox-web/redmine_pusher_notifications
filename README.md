@@ -50,21 +50,23 @@ Go to the plugin settings page within Redmine interface to configure your Pusher
 
 If you want to integrate Pusher async notifications in your plugin, or just Gitter with ```gflash``` you may need to register your own channels and events in your ```init.rb``` file : each channel can have many events. It may also have an optional ```target``` parameter which can be a string or a Proc.
 
-    ## it must be OUTSIDE of the Redmine::Plugin.register block
+```ruby
+## This must be OUTSIDE of the Redmine::Plugin.register block
 
-    ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
-      target Proc.new { User.current.login }
-      event  :event1, :sticky => true
-      event  :event2, :sticky => false
-      event  :event3
-    end
+ActsAsNotifiableRedmine::Notifications.register_channel :channel_test do
+  target Proc.new { User.current.login }
+  event  :event1, :sticky => true
+  event  :event2, :sticky => false
+  event  :event3
+end
 
-    ActsAsNotifiableRedmine::Notifications.register_channel :broadcast do
-      target 'broadcast'
-      event  :event1, :sticky => true
-      event  :event2, :sticky => false
-      event  :event3
-    end
+ActsAsNotifiableRedmine::Notifications.register_channel :broadcast do
+  target 'broadcast'
+  event  :event1, :sticky => true
+  event  :event2, :sticky => false
+  event  :event3
+end
+```
 
 Then to send notifications you have 2 options :
 * **asynchronous** notifications via Pusher
@@ -72,47 +74,57 @@ Then to send notifications you have 2 options :
 
 For **asynchronous** notifications :
 
-    ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title => 'Hello!', :message => 'This is a test message !'})
+```ruby
+ActsAsNotifiableRedmine::Notifications.send_notification([channel.token], event.name, {:title => 'Hello!', :message => 'This is a test message !'})
+```
 
 **Note :** The logic to determine wether or not to send a notification is let to the developer. You can easily do this with callbacks :
 
-    class Comment < ActiveRecord::Base
-        has_many :watchers
-        after_create :send_notification
+```ruby
+class Comment < ActiveRecord::Base
+  has_many :watchers
+  after_create :send_notification
 
-        private
+  private
 
-            def send_notification
-                channels = []
-                watchers.each do |watcher|
-                    token = '<channel_name>-' + watcher.login
-                    channels.push(token)
-                end
-                ActsAsNotifiableRedmine::Notifications.send_notification(channels, <event_name>, {:title => 'Hello!', :message => 'This is a test message !'})
-            end
+    def send_notification
+      channels = []
+      watchers.each do |watcher|
+        token = '<channel_name>-' + watcher.login
+        channels.push(token)
+      end
+      ActsAsNotifiableRedmine::Notifications.send_notification(channels, <event_name>, {:title => 'Hello!', :message => 'This is a test message !'})
     end
+end
+```
 
 For **synchronous** notifications :
 
 In a controller :
 
-    def test
-      data = {}
-      data[:message] = 'Hello!'
-      data[:sticky] = true
-      data[:image] = "<img class=\"gritter-image\" src=\"/plugin_assets/redmine_pusher_notifications/images/ok.png\">"
-      gflash :now, :success => { :value => data[:message], :sticky => data[:sticky], :image => data[:image] }
-    end
+```ruby
+def test
+  data = {}
+  data[:message] = 'Hello!'
+  data[:sticky] = true
+  data[:image] = "<img class=\"gritter-image\" src=\"/plugin_assets/redmine_pusher_notifications/images/ok.png\">"
+  gflash :now, :success => { :value => data[:message], :sticky => data[:sticky], :image => data[:image] }
+end
+```
 
 In a JS partial :
 
-    $(document).ready(function() {
-      <%= gflash :js => true %>
-    });
+```ruby
+$(document).ready(function() {
+  <%= gflash :js => true %>
+});
+```
 
 In a HTML partial :
 
-    <%= link_to 'Test me!', test_path, :remote => true %>
+```ruby
+<%= link_to 'Test me!', test_path, :remote => true %>
+```
 
 For more details, take a look at [gritter](https://github.com/RobinBrouwer/gritter#gflash).
 
