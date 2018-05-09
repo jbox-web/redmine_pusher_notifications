@@ -3,7 +3,6 @@
 [![GitHub license](https://img.shields.io/github/license/jbox-web/redmine_pusher_notifications.svg)](https://github.com/jbox-web/redmine_pusher_notifications/blob/devel/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/jbox-web/redmine_pusher_notifications.svg)](https://github.com/jbox-web/redmine_pusher_notifications/releases/latest)
 [![Code Climate](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications.png)](https://codeclimate.com/github/jbox-web/redmine_pusher_notifications)
-[![Dependency Status](https://gemnasium.com/jbox-web/redmine_pusher_notifications.svg)](https://gemnasium.com/jbox-web/redmine_pusher_notifications)
 
 ### A Redmine plugin which makes notifying your Redmine instance, easy ;)
 
